@@ -1,6 +1,11 @@
 import React from 'react';
 
-const DeleteMovieModal = () => {
+const DeleteMovieModal = (props) => {
+    function handleCancel (e){
+        e.preventDefault()
+        props.setModal(false)
+    }
+
     return (<div id="deleteMovieModal">
         <div className="modal-dialog">
             <div className="modal-content">
@@ -14,8 +19,8 @@ const DeleteMovieModal = () => {
                         <p className="text-warning"><small>This action cannot be undone.</small></p>
                     </div>
                     <div className="modal-footer">
-                        <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-                        <input type="submit" className="btn btn-danger" value="Delete"/>
+                        <input onClick={handleCancel} type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
+                        <input onClick={props.handleDelete} type="submit" className="btn btn-danger" value="Delete"/>
                     </div>
                 </form>
             </div>
